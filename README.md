@@ -91,9 +91,7 @@ fabric1.2多机搭建&amp;通过配置文件加入新组织&amp;通过官网工�
 ![installSuccess](https://github.com/offthewall123/fabric1.2-multipeer/blob/master/imgs/peer0org1InstallSuccess.PNG)  
 
 实例化合约代码初始化a为100 b为200
-`ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem`  
-
-`peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile $ORDERER_CA -C mychannel -n mycc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer')"`
+peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P 'OR ('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')'
 
 peer上查询a的值为100  
 `peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'`  
